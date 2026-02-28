@@ -14,4 +14,4 @@ def find_even_index(arr):
             return i
         sum_left -= arr[i]
     return -1
-print(find_even_index([20,10,-80,10,10,15,35]))    
+print(find_even_index([20,10,-80,10,10,15,35]))
