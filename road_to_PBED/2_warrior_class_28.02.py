@@ -2,20 +2,17 @@ import random
 
 
 class Warrior:
-    name = None
-    power = None
-    healthpoints = None
-    critical_hit_chance = 15
 
-    def set_data_warrior(self, name, power, healthpoints):
+    def __init__(self, name, power, healthpoints, crit=15):
         self.name = name
         self.power = power
         self.healthpoints = healthpoints
+        self.critical_hit_chance = crit
 
-    def attacks(self, target):
+    def fight(self, target):
         while self.healthpoints > 0 and target.healthpoints > 0:
 
-            if random.randint(0, 100) <= Warrior.critical_hit_chance:
+            if random.randint(0, 100) <= self.critical_hit_chance:
                 target.healthpoints -= self.power * 2
                 print(
                     f'{self.name} нанес критический удар {target.name}, и отнял у него {self.power * 2} здоровья!.'
@@ -30,7 +27,7 @@ class Warrior:
             if target.healthpoints <= 0:
                 break
 
-            if random.randint(0, 100) <= Warrior.critical_hit_chance:
+            if random.randint(0, 100) <= self.critical_hit_chance:
                 self.healthpoints -= target.power * 2
                 print(
                     f'{target.name} нанес критический удар {self.name}, и отнял у него {target.power * 2} здоровья!'
@@ -46,8 +43,7 @@ class Warrior:
         return f'{self.name} выиграл!'
 
 
-warrior1 = Warrior()
-warrior2 = Warrior()
-warrior1.set_data_warrior(input('Имя: '), int(input('Введите силу удара: ')), int(input('Введите кол-во здоровья: ')))
-warrior2.set_data_warrior(input('Имя: '), int(input('Введите силу удара: ')), int(input('Введите кол-во здоровья: ')))
-print(warrior1.attacks(warrior2))
+warrior1 = Warrior(input('Имя: '), int(input('Введите силу удара: ')), int(input('Введите кол-во здоровья: ')))
+warrior2 = Warrior(input('Имя: '), int(input('Введите силу удара: ')), int(input('Введите кол-во здоровья: ')))
+print(warrior1.fight(warrior2))
+
