@@ -1,20 +1,17 @@
-class Robot:  # class - ключевое слово. robot - название класса
-    name = None  # Создание атрибута. Можно дать любое начально значение.
-    lasers_from_eyes = False
-    ability_to_walk = True
-    best_before_date = '10 years'
+class Robot:
+    def __init__(self, name, years, garantiya):
+        self.name = name
+        self.__years = years
+        self.__garantiya = garantiya
 
-    def data(self, name, lasers_from_eyes):
-        self.name = name  # Говорю Python'у: имя конкретного робота(объекта) - то значение, которое я передал в функцию
-        self.lasers_from_eyes = lasers_from_eyes
-
-    def get_data(self):
-        return (f'Имя: {self.name}, Возможность стрелять лазерами: {self.lasers_from_eyes}, '
-                f'Возможность ходьбы: {self.ability_to_walk}, Гарантийный срок: {self.best_before_date}')
-                # Данные какого-то робота уже переданы. Python их берет, так как self указывает на нужный объект
+    def set_get_garantiya(self, garantiya):
+        self.__garantiya = garantiya -5
 
 
-robot1 = Robot()  # Создание объекта на основе класса
-robot1.data(input('Введите имя: '),input('Будет стрелять лазерами из глаз?: '))  # Передаю только те аргументы,
-                                                                                 # которые по логике должны быть изменяемы
-print(robot1.get_data())
+
+robot1 = Robot('Саша', 10, 10)
+
+# robot1.__years -= 5
+# print(robot1.__years)  # Ошибка!!!
+
+print(robot1.set_get_garantiya(10))  # 5
